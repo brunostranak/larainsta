@@ -18,9 +18,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
 Route::get('/', 'HomeController@index');
 
 Route::get('/home', 'HomeController@home');
+
 
 Route::get('/posts','PostsController@index');
 
