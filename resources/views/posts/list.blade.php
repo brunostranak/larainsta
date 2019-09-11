@@ -1,6 +1,7 @@
 @extends('layouts.app')
-
-
+<?php
+use App\User;
+?>
 @section('content')
 
 <div class="container">
@@ -12,13 +13,21 @@
            @foreach ($posts as $post)
 
                <div class="card mt-4">
-                   {{post::user()->name}}
-                   {{$post->user_id}}
+                   
+                   
+                   <?php
+                   $user = User::where('id',$post->user_id)->value('name');
+                   ?>
+                   <h4>
+                   {{$user}}
+                   </h4>
                     <div class="card-body">{{$post->description}}</div>
                    <img class="card-img-top" src="{{$post->image_path}}" alt="Card image cap">
 
                   
-
+                   <form method="GET" action="{{ route('coments') }}">
+                       <button type="submit" class="btn-primary-1">
+                   </form>
                </div>   
 
            @endforeach

@@ -30,5 +30,13 @@ Route::get('/posts/create','PostsController@create');
 
 Route::post('/posts','PostsController@store');
 
+Route::get('/coments','ComentsController@index');
+
+Route::get('/coments/create','ComentsController@create');
+
+Route::get('/coments/remove','ComentsController@remove');
+
+Route::post('/coments','ComentsController@store');
+
 
 Route::resource('notifications', 'NotificationController');
