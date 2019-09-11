@@ -21,11 +21,17 @@ use App\User;
                    <h4>
                    {{$user}}
                    </h4>
-                    <div class="card-body">{{$post->description}}</div>
+                    
                    <img class="card-img-top" src="{{$post->image_path}}" alt="Card image cap">
-
-                  
-
+                   
+                   
+                   <div class="card-body">{{$post->description}}</div>
+                   
+                   
+                    <form method="POST" action="/fazerComentario/{{$post->id}}">
+                          @csrf
+                        <input class="form-control" placeholder="Comente algo..." type="text" name="comentario">
+                   </form>
                </div>   
 
            @endforeach

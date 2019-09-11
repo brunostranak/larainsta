@@ -51,7 +51,7 @@ class PostsController extends Controller
 
            'image_path' => request()->file('image_path')->store('posts', 'public'),
 
-           'description' => request('description'),
+           'description' => request('description'), 
 
            'filter' => request('filter'),
 

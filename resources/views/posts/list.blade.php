@@ -21,12 +21,35 @@ use App\User;
                    <h4>
                    {{$user}}
                    </h4>
-                    <div class="card-body">{{$post->description}}</div>
+                    
                    <img class="card-img-top" src="{{$post->image_path}}" alt="Card image cap">
+                   
+                   
+                   <div class="card-body">{{$post->description}}</div>
+                   
+                   
+                   <div class="container" >
+                
+                     
+               @if(isset($coments))
+               <ul class="list-group">
+                @foreach ($coments as $coment)
+                   
+                   @if($coment->post_id==$post->id)
+                   
+                   <li class="list-group-item">{{$coment->comentario}}</li>
+                        
+                   
+                   
+                   @endif
+                @endforeach
+                </ul>
 
-                  
-                   <form method="GET" action="{{ route('coments') }}">
-                       <button type="submit" class="btn-primary-1">
+                @endif
+                </div>
+                    <form method="POST" action="/fazerComentario/{{$post->id}}">
+                         @csrf
+                        <input class="form-control" placeholder="Comente algo..." type="text" name="comentario">
                    </form>
                </div>   
 

@@ -34,9 +34,10 @@ Route::get('/coments','ComentsController@index');
 
 Route::get('/coments/create','ComentsController@create');
 
-Route::get('/coments/remove','ComentsController@remove');
+Route::get('/coments/remove','ComentsController@remove')->name('bla');
 
-Route::post('/coments','ComentsController@store');
+Route::post('/fazerComentario/{id}','ComentsController@store');
+
 
 
 Route::resource('notifications', 'NotificationController');
