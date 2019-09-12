@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Coment;
 use App\Post;
+use DB;
 class ComentsController extends Controller
 {
     
@@ -18,9 +19,7 @@ class ComentsController extends Controller
    
    public function index(){
        
-       $coments = Coment::all();
-       $posts = Post::orderby('id','DESC')->get();
-       return view('posts.list')->with('coments', $coments)->with('posts',$posts);
+       return redirect('posts');
    }
    
    public function create() {
@@ -29,14 +28,14 @@ class ComentsController extends Controller
 
    }
    
-   public function remove(){
-       
+   public function remove($id){
+       DB::delete('delete from coments where id ='.$id);
+       return redirect('coments');
        
    }
    
    public function store($id){
 
-            
        
        $coment = Coment::create([
 
@@ -50,6 +49,9 @@ class ComentsController extends Controller
 
        ])->save();
 
+        
+        
+        
        
        return redirect('coments');
 

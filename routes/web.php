@@ -34,10 +34,12 @@ Route::get('/coments','ComentsController@index');
 
 Route::get('/coments/create','ComentsController@create');
 
-Route::get('/coments/remove','ComentsController@remove')->name('bla');
+Route::get('/coments/remove/{id}','ComentsController@remove');
 
 Route::post('/fazerComentario/{id}','ComentsController@store');
 
+Route::get('/posts/{id}/{id2}/{status}','PostsController@index');
 
+Route::get('/likes/{id}/{id2}/{status}','LikesController@index');
 
 Route::resource('notifications', 'NotificationController');

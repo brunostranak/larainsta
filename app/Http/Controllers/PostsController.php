@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Post;
 use App\User;
+use App\Coment;
+use App\Like;
 
 class PostsController extends Controller
 
@@ -22,10 +24,11 @@ class PostsController extends Controller
 
 
    public function index(){
+       $coments = Coment::all();
        $posts = Post::orderby('id','DESC')->get();
-       #$posts = Post::all();
+      
        
-       return view('posts.list')->with('posts', $posts);
+       return view('posts.list')->with('coments', $coments)->with('posts',$posts);
 
    }
 
