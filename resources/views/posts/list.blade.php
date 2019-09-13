@@ -38,45 +38,40 @@ use App\User;
                        
                        <a style="text-decoration: none;" href="/likes/store/{{Auth::user()->id}}/{{$post->id}}">
                            
-                           <?php
-                           foreach($likes as $like){
-                                  
+                           
+                          <?php 
+                    if(count($likes)){
+                        foreach($likes as $like){                          
+                            if($like->user_id==Auth::user()->id && $like->post_id==$post->id){
+                                if($like->status==1){
+                                    $cor="#e2264d;";
+                                    
+                                }else{
+                                    $cor="#a6a5a4;";
+                                    
                                 }
-                           ?>
-                          
-                           
-                           @if(!empty($like))
+                                break;    
+                            }else{
+                                
+                                $cor="#a6a5a4;";
+                            }
+                        }  
+                        
+                    }else{
+                        $cor="#a6a5a4;";
+                    }
+                    ?>
+                   
+                <button style= "height:10px;border:none;background-color: transparent;
+                        color:{{$cor}};text-decoration: none;font-size: 4em;display: inline;">
+                    ❤ 
+                </button>
+      
+                      </a>
+                       <h3 style="display: inline">{{$post->likes}} Likes</h3>
+                    
                             
-                                    @foreach($likes as $like)
-                           
-                                        @if($like->post_id==$post->id)
-                                                @if($like->status==1)
-                                                        <button style= "height:10px;border:none;background-color: transparent;color:#e2264d;text-decoration: none;font-size: 4em;">
-                                                      ❤ 
-                                                   </button>
-                                                @else
-
-                                                    <button style= "height:10px;border:none;background-color: transparent;color:#a6a5a4;text-decoration: none;font-size: 4em;">
-                                                   ❤ 
-                                                </button>
-                                                @endif
-                           
-                                        @endif
-                           
-                                     @endforeach
-                         
-                          
-                       {{$post->likes}}
-                      
-                       
-                       
-                            @else
-                       
-                       <button style= "height:10px;border:none;background-color: transparent;color:#a6a5a4;text-decoration: none;font-size: 4em;">
-                          ❤ 
-                       </button>
-                            @endif
-                       </a> 
+                        
                    </div>
                    
                     <br>
