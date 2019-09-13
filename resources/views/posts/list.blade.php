@@ -62,7 +62,7 @@ use App\User;
                     }
                     ?>
                    
-                <button style= "height:10px;border:none;background-color: transparent;
+                <button style= "cursor:pointer;height:10px;border:none;background-color: transparent;
                         color:{{$cor}};text-decoration: none;font-size: 4em;display: inline;">
                     ❤ 
                 </button>
