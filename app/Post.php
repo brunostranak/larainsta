@@ -23,4 +23,6 @@ class Post extends Model
        return ($image ? asset('storage/'.$image) : asset('images/img_forest.jpg') );
 
    }
+   
+   
 }

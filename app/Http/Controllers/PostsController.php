@@ -26,9 +26,9 @@ class PostsController extends Controller
    public function index(){
        $coments = Coment::all();
        $posts = Post::orderby('id','DESC')->get();
-      
+       $likes = Like::all();
        
-       return view('posts.list')->with('coments', $coments)->with('posts',$posts);
+       return view('posts.list')->with('coments', $coments)->with('posts',$posts)->with('likes',$likes);
 
    }
 

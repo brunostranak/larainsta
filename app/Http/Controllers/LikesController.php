@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 use App\Like;
+use App\Post;
+use DB;
+
 use Illuminate\Http\Request;
-session_start();
+
 class LikesController extends Controller
 {
     public function __construct()
@@ -15,30 +18,69 @@ class LikesController extends Controller
    }
 
 
-   public function index($user_id,$post_id,$status){
+   
+   
+   public function store($user_id,$post_id){
+      
+       $likes = Like::where('user_id',$user_id)->where('post_id',$post_id)->get();
+       #$qtdlike= Like::where('post_id',$post_id)->get()->count();
        
-        $likes = Like::where('user_id','$user_id')->where('post_id','$post_id')->get();
-        
        
-       if(!empty($likes["items:protected"])){
-          $status="on";
-       }else{
-          $status="off";
+       
+       #$like = Like::all();
           
-          Like::create([
+       foreach($likes as $like){
+           
+          
+           print_r($like);
+       }
+       
+       #print_r($likes);
+       if(isset($like)){
+               
+          if($like->status==0){
+           
+           #$seila=\DB::update('UPDATE `posts` SET likes = 2 WHERE id = $post_id');
+          Post::find($post_id)->increment('likes',1);
+          
+          
+          DB::update('UPDATE `likes` SET status = 1 WHERE id ='.$like->id);     
+           
+               
+          
+          
+       }else{
+          
+          
+          DB::update('UPDATE `likes` SET status = 0 WHERE id ='.$like->id);     
+          #DB::delete('delete from likes where id ='.$like->id);
+           
+          Post::find($post_id)->decrement('likes',1);
+          
+          
+          
+          
+       }
+       
+       }else{
+           
+           
+           Like::create([
 
            'user_id' => $user_id,
 
            'post_id' => $post_id
 
-          
 
        ])->save();
        }
-       unset($_SESSION["likes"]);
-       $_SESSION["likes"]=$status;
-
-       return redirect("posts");
+      
+    
+       
+      return redirect("posts"); 
+       
    }
+   
+   
 
 }

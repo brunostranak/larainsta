@@ -1,8 +1,11 @@
 @extends('layouts.app')
 <?php
-session_start();
-echo $_SESSION["likes"];
+
 use App\User;
+
+
+
+
 ?>
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
@@ -32,25 +35,48 @@ use App\User;
                    <div class="container">
                    
                        <!--<a href="/likes/{{Auth::user()->id}}/{{$post->id}}">-->
-                       @if(isset($_SESSION["likes"]))
                        
-                       @if($_SESSION["likes"]=="on")
-                       <a href="/likes/{{Auth::user()->id}}/{{$post->id}}/{{1}}" style= "color:#e2264d;text-decoration: none;font-size: 4em;">
+                       <a style="text-decoration: none;" href="/likes/store/{{Auth::user()->id}}/{{$post->id}}">
+                           
+                           <?php
+                           foreach($likes as $like){
+                                  
+                                }
+                           ?>
+                          
+                           
+                           @if(!empty($like))
+                            
+                                    @foreach($likes as $like)
+                           
+                                        @if($like->post_id==$post->id)
+                                                @if($like->status==1)
+                                                        <button style= "height:10px;border:none;background-color: transparent;color:#e2264d;text-decoration: none;font-size: 4em;">
+                                                      ❤ 
+                                                   </button>
+                                                @else
+
+                                                    <button style= "height:10px;border:none;background-color: transparent;color:#a6a5a4;text-decoration: none;font-size: 4em;">
+                                                   ❤ 
+                                                </button>
+                                                @endif
+                           
+                                        @endif
+                           
+                                     @endforeach
+                         
+                          
+                       {{$post->likes}}
+                      
+                       
+                       
+                            @else
+                       
+                       <button style= "height:10px;border:none;background-color: transparent;color:#a6a5a4;text-decoration: none;font-size: 4em;">
                           ❤ 
-                       </a>
-                       @else
-                       <a href="/likes/{{Auth::user()->id}}/{{$post->id}}/{{0}}" style= "color:#aab8c2;;text-decoration: none;font-size: 4em;">
-                          ❤ 
-                       </a>
-                       @endif
-                       @else
-                       
-                       <a href="/likes/{{Auth::user()->id}}/{{$post->id}}/{{0}}" style= "color:#aab8c2;;text-decoration: none;font-size: 4em;">
-                          ❤ 
-                       </a>
-                       @endif
-                       
-                       
+                       </button>
+                            @endif
+                       </a> 
                    </div>
                    
                     <br>

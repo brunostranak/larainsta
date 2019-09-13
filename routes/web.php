@@ -38,8 +38,8 @@ Route::get('/coments/remove/{id}','ComentsController@remove');
 
 Route::post('/fazerComentario/{id}','ComentsController@store');
 
-Route::get('/posts/{id}/{id2}/{status}','PostsController@index');
+#Route::get('/posts/{id}/{id2}/{status}','PostsController@index');
 
-Route::get('/likes/{id}/{id2}/{status}','LikesController@index');
+Route::get('/likes/store/{a}/{b}','LikesController@store');
 
 Route::resource('notifications', 'NotificationController');

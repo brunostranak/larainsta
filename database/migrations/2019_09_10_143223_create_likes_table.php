@@ -17,6 +17,7 @@ class CreateLikesTable extends Migration
             $table->bigIncrements('id');
              $table->integer('user_id')->nullable();
              $table->integer('post_id')->nullable();
+             $table->integer('status')->nullable();
              #$table->foreign('id_post')->references('id')->on('posts');
             $table->timestamps();
         });
